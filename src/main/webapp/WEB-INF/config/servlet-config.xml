@@ -21,6 +21,7 @@
 	</bean>
 
 	<context:component-scan base-package="org.spring" />
+	<bean name="/hello.html" class="org.spring.controller.TestController"/>
 
 	<!-- Data Source -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
