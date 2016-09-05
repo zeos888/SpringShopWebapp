@@ -2,6 +2,7 @@ package org.spring.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.spring.dao.CustomerDao;
 import org.spring.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,11 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     public void insert(Customer customer) {
-        session.saveOrUpdate(customer);
+        Session s1 = sessionFactory.openSession();
+        Transaction t = s1.beginTransaction();
+        s1.saveOrUpdate(customer);
+        s1.flush();
+        t.commit();
     }
 
     @SuppressWarnings("unchecked")

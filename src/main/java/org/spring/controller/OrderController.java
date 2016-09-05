@@ -16,14 +16,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class OrderController {
 
+    @Autowired
     private ShopService shopService;
 
-    @Autowired
-    public void setShopService(ShopService shopService) {
-        this.shopService = shopService;
+    @RequestMapping("/a")
+    public String test(Model model){
+        System.out.println("------------------------------------------>");
+        return "orderView";
     }
 
-    @RequestMapping("/viewOrder")
+
+
+    @RequestMapping(value = "/viewOrder", method = RequestMethod.GET)
     public String viewOrder(int orderId, Model model){
         Order order = shopService.findOrderById(orderId);
         model.asMap().put("order", order);

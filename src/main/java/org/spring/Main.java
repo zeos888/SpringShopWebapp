@@ -22,8 +22,8 @@ public class Main {
             System.out.println(c);
         }
         Customer customer = new Customer();
-        customer.setEmail("shdfhd6@shsdfgh");
-        customer.setName("q35645");
+        customer.setEmail("w45ydrsthdf@shsdfgh");
+        customer.setName("sdrtdr");
         customerDao.insert(customer);
         for (Customer c : customerDao.getAll()){
             System.out.println(c);
