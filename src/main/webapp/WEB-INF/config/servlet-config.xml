@@ -13,6 +13,8 @@
 	<!--<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"-->
 		  <!--p:basename="messages"/>-->
 
+	<bean name="testData" class="org.spring.TestData" init-method="init"/>
+
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>

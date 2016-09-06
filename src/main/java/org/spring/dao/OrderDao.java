@@ -18,4 +18,5 @@ public interface OrderDao {
     List<Order> getByCustomer(Customer customer);
     List<Order> getByProduct(Product product);
     void placeNewOrder(Customer customer, Product product, int quantity) throws NotEnoughException;
+    void placeNewOrder(int customerId, int productId, int quantity) throws NotEnoughException;
 }

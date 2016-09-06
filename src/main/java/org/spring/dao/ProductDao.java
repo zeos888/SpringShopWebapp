@@ -13,4 +13,5 @@ public interface ProductDao {
     void insert(Product product);
     List<Product> getAll();
     List<Product> getByCategory(ProductCategory productCategory);
+    void insert(String name, String description, int productCategoryId, double price, int quantity);
 }

@@ -45,4 +45,11 @@ public class CustomerDaoImpl implements CustomerDao {
     public Customer getByName(String name) {
         return (Customer)session.createQuery("from Customer where name=?").setParameter(0, name).uniqueResult();
     }
+
+    public void insert(String name, String email) {
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setEmail(email);
+        insert(customer);
+    }
 }

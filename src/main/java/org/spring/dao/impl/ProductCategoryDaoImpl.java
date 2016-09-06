@@ -35,4 +35,10 @@ public class ProductCategoryDaoImpl implements ProductCategoryDao {
     public List<ProductCategory> getAll() {
         return (List<ProductCategory>) session.createQuery("from ProductCategory").list();
     }
+
+    public void insert(String name) {
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setName(name);
+        insert(productCategory);
+    }
 }

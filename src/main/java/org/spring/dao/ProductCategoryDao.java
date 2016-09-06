@@ -11,4 +11,5 @@ public interface ProductCategoryDao {
     ProductCategory getById(int id);
     void insert(ProductCategory productCategory);
     List<ProductCategory> getAll();
+    void insert(String name);
 }

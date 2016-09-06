@@ -43,4 +43,14 @@ public class ProductDaoImpl implements ProductDao {
         return (List<Product>)session.createQuery("from Product where categoryId=?")
                 .setParameter(0, productCategory.getId()).list();
     }
+
+    public void insert(String name, String description, int productCategoryId, double price, int quantity) {
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
+        product.setProductCategoryId(productCategoryId);
+        product.setPrice(price);
+        product.setQuantity(quantity);
+        insert(product);
+    }
 }

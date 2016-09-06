@@ -1,7 +1,10 @@
 package org.spring.service;
 
+import org.spring.entity.Customer;
 import org.spring.entity.Order;
 import org.spring.entity.Product;
+import org.spring.entity.ProductCategory;
+import org.spring.exception.NotEnoughException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +13,18 @@ import java.util.List;
  * Created by alxev on 04.09.2016.
  */
 public interface ShopService {
-    List<Order> findAllOrders();
-    Order findOrderById(int id);
+    List<ProductCategory> findAllProductCategories();
+    void addProductCategory(ProductCategory productCategory);
+
     List<Product> findAllProducts();
+    List<Product> findAllProductsByCategoryId(int categoryId);
+    void addOrReplaceProduct(Product product);
+
+    List<Customer> findAllCustomers();
+    void addOrReplaceCustomer(Customer customer);
+
+    void placeOrder(int customerId, int productId, int quantity) throws NotEnoughException;
+    List<Order> findAllOrders();
+    List<Order> findAllOrdersByCustomerId(int customerId);
+    List<Order> findAllOrdersByProductId(int productId);
 }

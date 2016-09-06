@@ -12,4 +12,5 @@ public interface CustomerDao {
     List<Customer> getAll();
     void insert(Customer customer);
     Customer getByName(String name);
+    void insert(String name, String email);
 }

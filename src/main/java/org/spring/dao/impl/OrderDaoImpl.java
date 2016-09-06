@@ -2,7 +2,9 @@ package org.spring.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.spring.dao.CustomerDao;
 import org.spring.dao.OrderDao;
+import org.spring.dao.ProductDao;
 import org.spring.entity.Customer;
 import org.spring.entity.Order;
 import org.spring.entity.Product;
@@ -18,6 +20,12 @@ import java.util.List;
  */
 @Repository
 public class OrderDaoImpl implements OrderDao {
+
+    @Autowired
+    private CustomerDao customerDao;
+    @Autowired
+    private ProductDao productDao;
+
     private SessionFactory sessionFactory;
     private Session session;
 
@@ -62,6 +70,10 @@ public class OrderDaoImpl implements OrderDao {
         product.setQuantity(product.getQuantity() - quantity);
         session.saveOrUpdate(order);
         session.saveOrUpdate(product);
+    }
+
+    public void placeNewOrder(int customerId, int productId, int quantity) throws NotEnoughException {
+        placeNewOrder(customerDao.getById(customerId), productDao.getById(productId), quantity);
     }
 
     @SuppressWarnings("unchecked")

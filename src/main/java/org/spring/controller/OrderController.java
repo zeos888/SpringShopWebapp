@@ -28,15 +28,6 @@ public class OrderController {
         return "orderView";
     }
 
-
-
-    @RequestMapping(value = "/viewOrder", method = RequestMethod.GET)
-    public String viewOrder(int orderId, Model model){
-        Order order = shopService.findOrderById(orderId);
-        model.asMap().put("order", order);
-        return "orderView";
-    }
-
     @RequestMapping(value = "/viewAllOrders", method = RequestMethod.GET)
     public String viewAllOrders(Model model){
         List<Order> orders = shopService.findAllOrders();
