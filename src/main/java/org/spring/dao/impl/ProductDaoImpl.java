@@ -40,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @SuppressWarnings("unchecked")
     public List<Product> getByCategory(ProductCategory productCategory) {
-        return (List<Product>)session.createQuery("from Product where categoryId=?")
+        return (List<Product>)session.createQuery("from Product where productCategoryId=?")
                 .setParameter(0, productCategory.getId()).list();
     }
 

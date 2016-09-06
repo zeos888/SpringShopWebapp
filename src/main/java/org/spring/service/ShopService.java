@@ -19,6 +19,7 @@ public interface ShopService {
     List<Product> findAllProducts();
     List<Product> findAllProductsByCategoryId(int categoryId);
     void addOrReplaceProduct(Product product);
+    String getCategoryName(Product product);
 
     List<Customer> findAllCustomers();
     void addOrReplaceCustomer(Customer customer);
@@ -27,4 +28,7 @@ public interface ShopService {
     List<Order> findAllOrders();
     List<Order> findAllOrdersByCustomerId(int customerId);
     List<Order> findAllOrdersByProductId(int productId);
+    Product getProduct(Order order);
+    Customer getCustomer(Order order);
+    Order findOrderById(int id);
 }

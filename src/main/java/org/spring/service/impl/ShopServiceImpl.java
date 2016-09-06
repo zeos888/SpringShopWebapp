@@ -62,6 +62,22 @@ public class ShopServiceImpl implements ShopService {
         orderDao.placeNewOrder(customerDao.getById(customerId), productDao.getById(productId), quantity);
     }
 
+    public Order findOrderById(int id) {
+        return orderDao.getById(id);
+    }
+
+    public Customer getCustomer(Order order) {
+        return customerDao.getById(order.getCustomerId());
+    }
+
+    public Product getProduct(Order order) {
+        return productDao.getById(order.getProductId());
+    }
+
+    public String getCategoryName(Product product) {
+        return productCategoryDao.getById(product.getProductCategoryId()).getName();
+    }
+
     public List<Order> findAllOrders() {
         return orderDao.getAll();
     }

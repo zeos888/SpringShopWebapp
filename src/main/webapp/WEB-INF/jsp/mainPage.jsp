@@ -14,7 +14,10 @@
 <body>
 <h1>Little Spring Shop</h1>
 <br>
-<a href="/order/">Place an order</a>
+<a href="/newOrder/">Place an order</a>
+<a href="/newProduct/">Add new product</a>
+<a href="/newProductCategory/">Add new product category</a>
+<a href="/newCustomer/">Add new customer</a>
 <h3>Available product categories</h3>
 <table>
     <tr>
