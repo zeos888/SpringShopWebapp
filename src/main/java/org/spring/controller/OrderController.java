@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by alxev on 04.09.2016.
@@ -36,7 +39,9 @@ public class OrderController {
 
     @RequestMapping(value = "/viewAllOrders", method = RequestMethod.GET)
     public String viewAllOrders(Model model){
-        model.addAttribute("orders", shopService.findAllOrders());
+        List<Order> orders = shopService.findAllOrders();
+        model.addAttribute("orders", orders);
         return "ordersView";
     }
+
 }

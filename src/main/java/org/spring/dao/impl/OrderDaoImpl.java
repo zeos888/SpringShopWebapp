@@ -45,7 +45,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @SuppressWarnings("unchecked")
     public List<Order> getByCustomer(Customer customer) {
-        return (List<Order>)session.createQuery("from Order where customerId=")
+        return (List<Order>)session.createQuery("from Order where customerId=?")
                 .setParameter(0, customer.getId()).list();
     }
 

@@ -16,18 +16,10 @@ import java.util.List;
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
 
+    @Autowired
     private OrderDao orderDao;
+    @Autowired
     private ProductDao productDao;
-
-    @Autowired
-    public void setOrderDao(OrderDao orderDao) {
-        this.orderDao = orderDao;
-    }
-
-    @Autowired
-    public void setProductDao(ProductDao productDao) {
-        this.productDao = productDao;
-    }
 
     public List<Order> findAllOrders() {
         return orderDao.getAll();
