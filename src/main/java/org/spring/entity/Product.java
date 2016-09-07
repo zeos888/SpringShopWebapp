@@ -14,7 +14,20 @@ public class Product {
 
     private String name;
     private String description;
-    private int productCategoryId;
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
+    }
+
+    //private int productCategoryId;
+
+    @ManyToOne
+    private ProductCategory productCategory;
+
     private double price;
     private int quantity;
 
@@ -48,18 +61,10 @@ public class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", productCategoryId=" + productCategoryId +
+                ", productCategory=" + productCategory +
                 ", price=" + price +
                 ", quantity=" + quantity +
                 '}';
-    }
-
-    public int getProductCategoryId() {
-        return productCategoryId;
-    }
-
-    public void setProductCategoryId(int productCategoryId) {
-        this.productCategoryId = productCategoryId;
     }
 
     public double getPrice() {

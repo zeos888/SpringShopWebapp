@@ -15,6 +15,7 @@ import java.util.List;
 public interface ShopService {
     List<ProductCategory> findAllProductCategories();
     void addProductCategory(ProductCategory productCategory);
+    ProductCategory getCategoryById(int id);
 
     List<Product> findAllProducts();
     List<Product> findAllProductsByCategoryId(int categoryId);

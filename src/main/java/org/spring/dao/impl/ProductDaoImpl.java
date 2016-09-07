@@ -2,6 +2,7 @@ package org.spring.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.spring.dao.ProductCategoryDao;
 import org.spring.dao.ProductDao;
 import org.spring.entity.Product;
 import org.spring.entity.ProductCategory;
@@ -18,6 +19,9 @@ public class ProductDaoImpl implements ProductDao {
 
     private SessionFactory sessionFactory;
     private Session session;
+
+    @Autowired
+    private ProductCategoryDao productCategoryDao;
 
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -42,15 +46,5 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> getByCategory(ProductCategory productCategory) {
         return (List<Product>)session.createQuery("from Product where productCategoryId=?")
                 .setParameter(0, productCategory.getId()).list();
-    }
-
-    public void insert(String name, String description, int productCategoryId, double price, int quantity) {
-        Product product = new Product();
-        product.setName(name);
-        product.setDescription(description);
-        product.setProductCategoryId(productCategoryId);
-        product.setPrice(price);
-        product.setQuantity(quantity);
-        insert(product);
     }
 }

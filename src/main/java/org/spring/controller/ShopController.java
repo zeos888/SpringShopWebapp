@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by alxev on 07.09.2016.
@@ -30,10 +28,19 @@ public class ShopController {
         return "newProduct";
     }
 
+    @ModelAttribute(name = "productCategory")
+        public ProductCategory getCategory(String productCategory) {
+        if (productCategory == null) {
+            return null;
+        }
+        return shopService.getCategoryById(Integer.parseInt(productCategory));
+    }
+
     @RequestMapping(value = "/addProduct/", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("root")Product product, ModelMap modelMap){
+//        product.setProductCategory(shopService.getCategoryById(productCategoryId));
         shopService.addOrReplaceProduct(product);
-        modelMap.addAttribute("products", shopService.findAllProductsByCategoryId(product.getProductCategoryId()));
+        modelMap.addAttribute("products", shopService.findAllProductsByCategoryId(product.getProductCategory().getId()));
         modelMap.addAttribute("categoryName", shopService.getCategoryName(product));
         modelMap.addAttribute("productName", product.getName());
         return "addedProduct";

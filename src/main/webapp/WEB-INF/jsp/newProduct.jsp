@@ -15,16 +15,8 @@
 <form:form method="post" action="/addProduct/" modelAttribute="newProduct">
     <table>
         <tr>
-            <td><form:label path="productCategoryId">Product category</form:label></td>
-            <td><form:select path="productCategoryId" items="${categories}" itemLabel="name" itemValue="id"/>
-                <%--<select name="Categories" title="Categories">--%>
-                    <%--<c:forEach items="${categories}" var="cat">--%>
-                        <%--<option value="${cat.id}">--%>
-                            <%--<c:out value="${cat.name}"/>--%>
-                        <%--</option>--%>
-                    <%--</c:forEach>--%>
-                <%--</select>--%>
-            </td>
+            <td>Product category</td>
+            <td><form:select path="productCategory" items="${categories}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
             <td><form:label path="name">Product name</form:label></td>

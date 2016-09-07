@@ -74,8 +74,12 @@ public class ShopServiceImpl implements ShopService {
         return productDao.getById(order.getProductId());
     }
 
+    public ProductCategory getCategoryById(int id) {
+        return productCategoryDao.getById(id);
+    }
+
     public String getCategoryName(Product product) {
-        return productCategoryDao.getById(product.getProductCategoryId()).getName();
+        return product.getProductCategory().getName();
     }
 
     public List<Order> findAllOrders() {
