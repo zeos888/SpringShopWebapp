@@ -62,8 +62,8 @@ public class OrderDaoImpl implements OrderDao {
             throw new NotEnoughException();
         }
         Order order = new Order();
-        order.setCustomerId(customer.getId());
-        order.setProductId(product.getId());
+        order.setCustomer(customer);
+        order.setProduct(product);
         order.setOrderPrice(product.getPrice() * quantity);
         order.setQuantity(quantity);
         order.setOrderDate(new Date());

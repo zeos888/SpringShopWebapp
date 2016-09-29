@@ -40,6 +40,7 @@
         <tr>
             <td><c:out value="${prod.name}"/></td>
             <td><c:out value="${prod.price}"/></td>
+            <td><c:out value="${prod.productCategory.name}"/></td>
             <td><c:out value="${prod.quantity}"/></td>
         </tr>
     </c:forEach>
@@ -69,8 +70,8 @@
     <c:forEach items="${orders}" var="ord">
         <tr>
             <td><c:out value="${ord.orderDate}"/></td>
-            <td><c:out value="${ord.customerId}"/></td>
-            <td><c:out value="${ord.productId}"/></td>
+            <td><c:out value="${ord.customer.name}"/></td>
+            <td><c:out value="${ord.product.name}"/></td>
             <td><c:out value="${ord.quantity}"/></td>
             <td><c:out value="${ord.orderPrice}"/></td>
         </tr>

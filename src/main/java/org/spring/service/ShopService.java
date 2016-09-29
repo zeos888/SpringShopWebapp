@@ -25,7 +25,7 @@ public interface ShopService {
     List<Customer> findAllCustomers();
     void addOrReplaceCustomer(Customer customer);
 
-    void placeOrder(int customerId, int productId, int quantity) throws NotEnoughException;
+    void placeOrder(Customer customer, Product product, int quantity) throws NotEnoughException;
     List<Order> findAllOrders();
     List<Order> findAllOrdersByCustomerId(int customerId);
     List<Order> findAllOrdersByProductId(int productId);

@@ -1,15 +1,14 @@
 package org.spring.controller;
 
-import org.spring.entity.Customer;
-import org.spring.entity.Order;
-import org.spring.entity.Product;
-import org.spring.entity.ProductCategory;
+import org.spring.entity.*;
 import org.spring.exception.NotEnoughException;
 import org.spring.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,6 +20,11 @@ public class ShopController {
     @Autowired
     private ShopService shopService;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        binder.registerCustomEditor(ProductCategory.class, new ProductCategoryEditor());
+    }
+
     @RequestMapping(value = "/newProduct/", method = RequestMethod.GET)
     public String newProduct(Model model){
         model.addAttribute("newProduct", new Product());
@@ -28,17 +32,10 @@ public class ShopController {
         return "newProduct";
     }
 
-    @ModelAttribute(name = "productCategory")
-        public ProductCategory getCategory(String productCategory) {
-        if (productCategory == null) {
-            return null;
-        }
-        return shopService.getCategoryById(Integer.parseInt(productCategory));
-    }
-
     @RequestMapping(value = "/addProduct/", method = RequestMethod.POST)
-    public String addProduct(@ModelAttribute("root")Product product, ModelMap modelMap){
+    public String addProduct(@ModelAttribute("product")Product product, @ModelAttribute("productCategory")ProductCategory productCategory, ModelMap modelMap){
 //        product.setProductCategory(shopService.getCategoryById(productCategoryId));
+        product.setProductCategory(productCategory);
         shopService.addOrReplaceProduct(product);
         modelMap.addAttribute("products", shopService.findAllProductsByCategoryId(product.getProductCategory().getId()));
         modelMap.addAttribute("categoryName", shopService.getCategoryName(product));
@@ -83,18 +80,18 @@ public class ShopController {
     }
 
     @RequestMapping(value = "/addOrder/", method = RequestMethod.POST)
-    public String addOrder(@ModelAttribute("root")Order order, ModelMap modelMap){
+    public String addOrder(@ModelAttribute("root")Order order, @ModelAttribute("root")Product product, @ModelAttribute("root")Customer customer, ModelMap modelMap){
         try {
-            shopService.placeOrder(order.getCustomerId(), order.getProductId(), order.getQuantity());
+            shopService.placeOrder(customer, product, order.getQuantity());
         } catch (NotEnoughException e){
-            modelMap.addAttribute("productName", shopService.getProduct(order).getName());
+            modelMap.addAttribute("productName", product.getName());
             modelMap.addAttribute("orderQuantity", order.getQuantity());
-            modelMap.addAttribute("productQuantity", shopService.getProduct(order).getQuantity());
+            modelMap.addAttribute("productQuantity", product.getQuantity());
             return "failedOrder";
         }
-        modelMap.addAttribute("ordersByCustomer", shopService.findAllOrdersByCustomerId(order.getCustomerId()));
-        modelMap.addAttribute("customerName", shopService.getCustomer(order).getName());
-        modelMap.addAttribute("productName", shopService.getProduct(order).getName());
+        modelMap.addAttribute("ordersByCustomer", shopService.findAllOrdersByCustomerId(customer.getId()));
+        modelMap.addAttribute("customerName", customer.getName());
+        modelMap.addAttribute("productName", product.getName());
         modelMap.addAttribute("quantity", order.getQuantity());
         return "addedOrder";
     }

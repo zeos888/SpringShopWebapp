@@ -19,14 +19,14 @@
     <tr>
         <th>Order date</th>
         <th>Customer id</th>
-        <th>Product id</th>
+        <th>Product name</th>
         <th>Quantity</th>
         <th>Order price</th>
     </tr>
     <c:forEach items="${ordersByCustomer}" var="ord">
         <tr>
             <td><c:out value="${ord.orderDate}"/></td>
-            <td><c:out value="${ord.productId}"/></td>
+            <td><c:out value="${ord.product.name}"/></td>
             <td><c:out value="${ord.quantity}"/></td>
             <td><c:out value="${ord.orderPrice}"/></td>
         </tr>

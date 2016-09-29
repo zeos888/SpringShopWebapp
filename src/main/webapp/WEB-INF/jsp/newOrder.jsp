@@ -15,12 +15,12 @@
 <form:form method="post" action="/addOrder/" modelAttribute="newOrder">
     <table>
         <tr>
-            <td><form:label path="productId">Product</form:label></td>
-            <td><form:select path="productId" items="${products}" itemLabel="name" itemValue="id"/></td>
+            <td>Product</td>
+            <td><form:select path="product" items="${products}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
-            <td><form:label path="customerId">Customer</form:label></td>
-            <td><form:select path="customerId" items="${customers}" itemLabel="name" itemValue="id"/></td>
+            <td>Customer</td>
+            <td><form:select path="customer" items="${customers}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
             <td><form:label path="quantity">Quantity</form:label></td>

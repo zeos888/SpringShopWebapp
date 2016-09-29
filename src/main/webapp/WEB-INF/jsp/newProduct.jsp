@@ -16,22 +16,22 @@
     <table>
         <tr>
             <td>Product category</td>
-            <td><form:select path="productCategory" items="${categories}" itemLabel="name" itemValue="id"/></td>
+            <td><form:select path="productCategory" items="${categories}" itemLabel="name" itemValue="id" modelAttribute="productCategory"/></td>
         </tr>
         <tr>
             <td><form:label path="name">Product name</form:label></td>
             <td><form:input path="name"/></td>
         </tr>
         <tr>
-            <td><form:label path="description">Product description</form:label></td>
+            <td><form:label path="description">Description</form:label></td>
             <td><form:input path="description"/></td>
         </tr>
         <tr>
-            <td><form:label path="price">Product description</form:label></td>
+            <td><form:label path="price">Price</form:label></td>
             <td><form:input path="price"/></td>
         </tr>
         <tr>
-            <td><form:label path="quantity">Product description</form:label></td>
+            <td><form:label path="quantity">Quantity</form:label></td>
             <td><form:input path="quantity"/></td>
         </tr>
         <tr>

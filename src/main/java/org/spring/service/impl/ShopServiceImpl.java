@@ -58,8 +58,8 @@ public class ShopServiceImpl implements ShopService {
         customerDao.insert(customer);
     }
 
-    public void placeOrder(int customerId, int productId, int quantity) throws NotEnoughException{
-        orderDao.placeNewOrder(customerDao.getById(customerId), productDao.getById(productId), quantity);
+    public void placeOrder(Customer customer, Product product, int quantity) throws NotEnoughException{
+        orderDao.placeNewOrder(customer, product, quantity);
     }
 
     public Order findOrderById(int id) {
@@ -67,11 +67,11 @@ public class ShopServiceImpl implements ShopService {
     }
 
     public Customer getCustomer(Order order) {
-        return customerDao.getById(order.getCustomerId());
+        return order.getCustomer();
     }
 
     public Product getProduct(Order order) {
-        return productDao.getById(order.getProductId());
+        return order.getProduct();
     }
 
     public ProductCategory getCategoryById(int id) {

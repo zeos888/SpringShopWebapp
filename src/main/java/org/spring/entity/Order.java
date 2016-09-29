@@ -13,8 +13,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int customerId;
-    private int productId;
+    @ManyToOne
+    private Customer customer;
+    @ManyToOne
+    private Product product;
     private int quantity;
     private double orderPrice;
     private Date orderDate;
@@ -33,22 +35,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     public int getQuantity() {
@@ -70,11 +56,28 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "customerId=" + customerId +
-                ", productId=" + productId +
+                "id=" + id +
+                ", customer=" + customer +
+                ", product=" + product +
                 ", quantity=" + quantity +
                 ", orderPrice=" + orderPrice +
                 ", orderDate=" + orderDate +
                 '}';
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
