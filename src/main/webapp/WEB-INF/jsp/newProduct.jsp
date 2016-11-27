@@ -16,7 +16,7 @@
     <table>
         <tr>
             <td>Product category</td>
-            <td><form:select path="productCategory" items="${categories}" itemLabel="name" itemValue="id" modelAttribute="productCategory"/></td>
+            <td><form:select path="productCategoryId" items="${categories}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
             <td><form:label path="name">Product name</form:label></td>

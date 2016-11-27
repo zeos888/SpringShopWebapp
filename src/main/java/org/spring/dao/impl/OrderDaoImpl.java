@@ -1,7 +1,9 @@
 package org.spring.dao.impl;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.spring.dao.CustomerDao;
 import org.spring.dao.OrderDao;
 import org.spring.dao.ProductDao;
@@ -47,14 +49,19 @@ public class OrderDaoImpl implements OrderDao {
 
     @SuppressWarnings("unchecked")
     public List<Order> getByDatePeriod(Date dateFrom, Date dateTo) {
-        return (List<Order>)session.createQuery("from Order where orderDate between ? and ?")
-                .setParameter(0, dateFrom).setParameter(1, dateTo).list();
+        Criteria criteria = session.createCriteria(Order.class);
+        criteria.add(Restrictions.ge("orderDate", dateFrom));
+        criteria.add(Restrictions.le("orderDate", dateTo));
+        return criteria.list();
+        //return (List<Order>)session.createQuery("from Order where orderDate between ? and ?").setParameter(0, dateFrom).setParameter(1, dateTo).list();
     }
 
     @SuppressWarnings("unchecked")
     public List<Order> getByCustomer(Customer customer) {
-        return (List<Order>)session.createQuery("from Order where customerId=?")
-                .setParameter(0, customer.getId()).list();
+        Criteria criteria = session.createCriteria(Order.class);
+        criteria.add(Restrictions.eq("customer", customer));
+        return criteria.list();
+        //return (List<Order>)session.createQuery("from Order where customerId=?").setParameter(0, customer.getId()).list();
     }
 
     public void placeNewOrder(Customer customer, Product product, int quantity) throws NotEnoughException {
@@ -78,7 +85,9 @@ public class OrderDaoImpl implements OrderDao {
 
     @SuppressWarnings("unchecked")
     public List<Order> getByProduct(Product product) {
-        return (List<Order>)session.createQuery("from Order where productId=")
-                .setParameter(0, product.getId()).list();
+        Criteria criteria = session.createCriteria(Order.class);
+        criteria.add(Restrictions.eq("product", product));
+        return criteria.list();
+        //return (List<Order>)session.createQuery("from Order where productId=").setParameter(0, product.getId()).list();
     }
 }

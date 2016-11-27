@@ -16,11 +16,11 @@
     <table>
         <tr>
             <td>Product</td>
-            <td><form:select path="product" items="${products}" itemLabel="name" itemValue="id"/></td>
+            <td><form:select path="productId" items="${products}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
             <td>Customer</td>
-            <td><form:select path="customer" items="${customers}" itemLabel="name" itemValue="id"/></td>
+            <td><form:select path="customerId" items="${customers}" itemLabel="name" itemValue="id"/></td>
         </tr>
         <tr>
             <td><form:label path="quantity">Quantity</form:label></td>

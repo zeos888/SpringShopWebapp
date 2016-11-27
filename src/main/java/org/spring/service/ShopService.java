@@ -21,9 +21,11 @@ public interface ShopService {
     List<Product> findAllProductsByCategoryId(int categoryId);
     void addOrReplaceProduct(Product product);
     String getCategoryName(Product product);
+    Product getProductById(int id);
 
     List<Customer> findAllCustomers();
     void addOrReplaceCustomer(Customer customer);
+    Customer getCustomerById(int id);
 
     void placeOrder(Customer customer, Product product, int quantity) throws NotEnoughException;
     List<Order> findAllOrders();
